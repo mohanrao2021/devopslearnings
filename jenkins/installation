@@ -1,0 +1,45 @@
+https://github.com/lerndevops/samplejavaapp
+
+Step 1: Update the Ubuntu repository and install the Java OpenJDK with apt command.
+Commands:
+	apt-get update
+	sudo add-apt-repository ppa:openjdk-r/ppa
+	sudo apt-get update
+	sudo apt-get install -y openjdk-8-jdk
+
+Step 2: Verify the installation by typing the command below:
+Command: java -version
+
+Step 3:
+Install Jenkins
+
+    wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+	echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+	sudo apt-get update
+	sudo apt-get install jenkins
+
+Step 4: Starting Jenkins
+
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+sudo systemctl enable jenkins
+
+Step 5:
+Install Maven  ( on Jenkins machine )
+
+	cd /tmp ; sudo wget http://apachemirror.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+	cd /tmp ; sudo tar -xzf apache-maven-3.6.3-bin.tar.gz -C /opt
+    cd /opt/apache-maven-3.6.3/
+	apt-get install maven
+	 mvn --version
+
+How to change default port in Jenkins?
+go to file  /etc/default/jenkins === > change from 8080 to requried port. 
+Ex:  HTTP_PORT=9090 
+
+Configure Global settings for git, maven and java.
+Manage Jenkins ===> Global tool Configuration ===> 
+
+JAVA_HOME = /usr/lib/jvm/java-8-openjdk-amd64
+MAVEN_HOME = /opt/apache-maven-3.6.3
+git    default location.
